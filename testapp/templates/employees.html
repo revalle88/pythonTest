@@ -1,0 +1,22 @@
+<ul>
+	{% for person in person_list %}
+	<li><a href = "/person/{{ person.name}}/">{{ person.name}}</a></li>
+	{% endfor %}
+</ul>
+	
+	<div class="pagination">
+    <span class="step-links">
+        {% if person_list.has_previous %}
+            <a href="?page={{ person_list.previous_page_number }}">previous</a>
+        {% endif %}
+
+        <span class="current">
+            Page {{ person_list.number }} of {{ person_list.paginator.num_pages }}.
+        </span>
+
+        {% if person_list.has_next %}
+            <a href="?page={{ person_list.next_page_number }}">next</a>
+        {% endif %}
+    </span>
+</div>
+	
