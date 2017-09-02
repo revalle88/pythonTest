@@ -1,3 +1,9 @@
+
+<form action="/" method="post">
+    {% csrf_token %}
+    {{ form }}
+    <input type="submit" value="Submit" />
+</form>
 <ul>
 	{% for person in person_list %}
 	<li><a href = "/person/{{ person.name}}/">{{ person.name}}</a></li>

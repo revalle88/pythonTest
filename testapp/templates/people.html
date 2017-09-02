@@ -1,7 +1,15 @@
+
+<form action="" method="get">
+ <!--   {% csrf_token %} -->
+    {{ form }}
+    <input type="submit" value="Submit" />
+</form>
+
 {% if person_list %}
     <table id="people">
         {% for person in person_list %}
             <tr>
+                <td>{{ person.id }}</td>
                 <td>{{ person.name }}</td>
                 <td>{{ person.sirname }}</td>
                 <td><a href="/person/{{ person.name }}/" class="see_detail">detail</a></td>
