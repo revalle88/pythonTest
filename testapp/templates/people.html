@@ -1,0 +1,30 @@
+{% if person_list %}
+    <table id="people">
+        {% for person in person_list %}
+            <tr>
+                <td>{{ person.name }}</td>
+                <td>{{ person.sirname }}</td>
+                <td><a href="/person/{{ person.name }}/" class="see_detail">detail</a></td>
+            </tr>
+        {% endfor %}
+    </table>
+ 
+    {% if is_paginated %}
+        <div class="pagination">
+            <span class="page-links">
+                {% if page_obj.has_previous %}
+                    <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+                {% endif %}
+                <span class="page-current">
+                    Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+                </span>
+                {% if page_obj.has_next %}
+                    <a href="?page={{ page_obj.next_page_number }}">next</a>
+                {% endif %}
+            </span>
+        </div>
+    {% endif %}
+{% else %}
+    <h3>People</h3>
+    <p>No employees found! :(</p>
+{% endif %}

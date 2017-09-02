@@ -3,7 +3,7 @@ from django.http import HttpResponse
 from django.template import loader
 from .models import Person
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
-
+from django.views import generic
 # Create your views here.
 
 def index(request):
@@ -20,3 +20,10 @@ def employees(request):
 	except EmptyPage:
 	    persons = paginator.page(paginator.num_pages)
 	return render(request, 'employees.html', {'person_list': persons})
+
+class PersonListView(generic.ListView):
+	template_name = 'people.html'
+	context_object_name = 'person_list'
+	paginate_by = 2
+	def get_queryset(self):
+		return Person.objects.all()
