@@ -35,7 +35,11 @@ class PersonListView(generic.ListView):
 			person_list = person_list.filter(
 				department = department_val,
 			)
-
+		if self.request.GET.get('retire'):
+			retire_val = self.request.GET.get('retire')
+			person_list = person_list.filter(
+				retireDate = retire_val,
+			)
 		'''
 		form = DepartmentForm()
 		if form.is_valid():

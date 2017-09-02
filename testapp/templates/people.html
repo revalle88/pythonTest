@@ -1,4 +1,14 @@
 
+<script type="text/javascript" src="/admin/jsi18n/"></script>
+<script type="text/javascript" src="/static/admin/js/core.js"></script>
+<script type="text/javascript" src="/static/admin/js/admin/RelatedObjectLookups.js">        </script>
+<script type="text/javascript" src="/static/admin/js/jquery.min.js"></script>
+<script type="text/javascript" src="/static/admin/js/jquery.init.js"></script>
+<script type="text/javascript" src="/static/admin/js/actions.min.js"></script>
+<script type="text/javascript" src="/static/admin/js/calendar.js"></script>
+<script type="text/javascript" src="/static/admin/js/admin/DateTimeShortcuts.js"></script>
+
+
 <form action="" method="get">
  <!--   {% csrf_token %} -->
     {{ form }}
@@ -12,6 +22,7 @@
                 <td>{{ person.id }}</td>
                 <td>{{ person.name }}</td>
                 <td>{{ person.sirname }}</td>
+                <td>{{ person.retireDate }}</td>
                 <td><a href="/person/{{ person.name }}/" class="see_detail">detail</a></td>
             </tr>
         {% endfor %}
