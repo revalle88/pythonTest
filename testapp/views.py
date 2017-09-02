@@ -53,3 +53,10 @@ class PersonListView(generic.ListView):
 		context = super(PersonListView, self).get_context_data(**kwargs)
 		context['form'] = DepartmentForm()
 		return context
+
+class PersonDetailView(generic.DetailView):
+    model = Person
+    template_name = 'person.html'
+    def get_context_data(self, **kwargs):
+        context = super(PersonDetailView, self).get_context_data(**kwargs)
+        return context
