@@ -9,9 +9,7 @@ from .forms import DepartmentForm
 
 
 def chunks(l, n):
-    # For item i in a range that is a length of l,
     for i in range(0, len(l), n):
-        # Create an index range for l of n items:
         yield l[i:i+n]
 
 def index(request):
@@ -82,7 +80,7 @@ def alphalist(request):
 
 	if request.method == "POST":
 		post_letters = request.POST.get("letters", "")
-		post_letters = '['+post_letters+']%%'
+		post_letters = '['+post_letters.lower()+post_letters.upper()+']%%'
 		print("HelloPost")
 		print(post_letters)
 		#person_list = Person.objects.extra(where=["sirname SIMILAR TO '[a-zA-Z]%%'"])
