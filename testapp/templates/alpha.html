@@ -1,0 +1,25 @@
+<ul>
+    {% for letter in letters %}
+    <li>
+    <form action="" method="post">
+    {% csrf_token %}
+    <input name = "letters" type = "hidden" value = "{{ letter}}" />
+    <input type="submit" value="{{ letter }}" />
+    </form>
+    </li>
+    {% endfor %}
+</ul>
+
+
+<ul>
+	{% for person in person_list %}
+	<li><a href = "/person/{{ person.sirname}}/">{{ person.sirname}}</a></li>
+	{% endfor %}
+</ul>
+<ul>
+    {% for letter in letters %}
+    <li><a href = "/person/{{ person.sirname}}/">{{ letter}}</a></li>
+    {% endfor %}
+</ul>
+{{count}}
+	

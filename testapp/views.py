@@ -7,6 +7,13 @@ from django.views import generic
 from .forms import DepartmentForm
 # Create your views here.
 
+
+def chunks(l, n):
+    # For item i in a range that is a length of l,
+    for i in range(0, len(l), n):
+        # Create an index range for l of n items:
+        yield l[i:i+n]
+
 def index(request):
     return HttpResponse("Test Application")
 
@@ -60,3 +67,24 @@ class PersonDetailView(generic.DetailView):
     def get_context_data(self, **kwargs):
         context = super(PersonDetailView, self).get_context_data(**kwargs)
         return context
+
+def alphalist(request):
+	letters = list()
+	firstletter = 'a'
+	person_list = Person.objects.order_by('sirname')
+	p_count = person_list.count
+	chunk_list = list(chunks(person_list, 2))
+	for people in chunk_list:
+		sirname = people[len(people)-1].sirname
+		letters.append(firstletter+'-'+sirname[0])
+		firstletter = chr(ord(sirname[0])+1)
+	print(letters)
+
+	if request.method == "POST":
+		post_letters = request.POST.get("letters", "")
+		post_letters = '['+post_letters+']%%'
+		print("HelloPost")
+		print(post_letters)
+		#person_list = Person.objects.extra(where=["sirname SIMILAR TO '[a-zA-Z]%%'"])
+		person_list = Person.objects.extra(where=["sirname SIMILAR TO %s"], params=[post_letters])
+	return render(request, 'alpha.html', {'person_list': person_list, 'letters': letters})

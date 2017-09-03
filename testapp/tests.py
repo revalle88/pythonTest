@@ -29,3 +29,10 @@ class ModelsTest(TestCase):
         self.assertTrue(Department.objects.create(name='foo', creation_date=now))
         department = Department.objects.create(name='foo', creation_date=now)
         self.assertTrue(Person.objects.create(name='foo', sirname='bar', patronymic='foobar', birthdate=now, email='foo@bar.ru', employDate=now, occupation = 'occ', department=department))
+
+class AlphaTest(TestCase):
+	def setUp(self):
+		self.client = Client()
+	def test_alphaView
+		response = self.client.get('/testapp/alpha/')
+		self.assertEqual(response.status_code, 200)
