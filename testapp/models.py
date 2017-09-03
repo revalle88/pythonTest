@@ -14,5 +14,5 @@ class Person(models.Model):
 	birthdate = models.DateField(auto_now=False, auto_now_add=False)
 	email = models.EmailField(max_length=50)
 	employDate = models.DateField('employment date')
-	retireDate = models.DateField(auto_now=False, auto_now_add=False)
+	retireDate = models.DateField(auto_now=False, auto_now_add=False, null=True, blank=True)
 	occupation = models.CharField(max_length=100)
