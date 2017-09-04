@@ -1,13 +1,6 @@
 
-<script type="text/javascript" src="/admin/jsi18n/"></script>
-<script type="text/javascript" src="/static/admin/js/core.js"></script>
-<script type="text/javascript" src="/static/admin/js/admin/RelatedObjectLookups.js">        </script>
-<script type="text/javascript" src="/static/admin/js/jquery.min.js"></script>
-<script type="text/javascript" src="/static/admin/js/jquery.init.js"></script>
-<script type="text/javascript" src="/static/admin/js/actions.min.js"></script>
-<script type="text/javascript" src="/static/admin/js/calendar.js"></script>
-<script type="text/javascript" src="/static/admin/js/admin/DateTimeShortcuts.js"></script>
-
+{% extends 'base.html' %}
+{% block content %}
 
 <form action="" method="get">
  <!--   {% csrf_token %} -->
@@ -47,3 +40,5 @@
     <h3>People</h3>
     <p>No employees found! :(</p>
 {% endif %}
+
+{% endblock %}

@@ -1,6 +1,9 @@
+{% extends 'base.html' %}
+{% block content %}
 <h1>Person: {{ person.name }} {{ person.sirname }}</h1>
 <ul>
 	<li>department: {{ person.department.name}}</li>
 	<li>email: {{person.email}}</li>
 	<li>occupation: {{person.occupation}}</li>
 </ul>
+{% endblock %}

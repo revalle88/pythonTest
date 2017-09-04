@@ -1,25 +1,37 @@
-<ul>
+{% extends 'base.html' %}
+{% block content %}
+<table class = "table" style = "border: none">
+    <tr>
     {% for letter in letters %}
-    <li>
+    <td>
     <form action="" method="post">
     {% csrf_token %}
     <input name = "letters" type = "hidden" value = "{{ letter}}" />
     <input type="submit" value="{{ letter }}" />
     </form>
-    </li>
+    </td>
     {% endfor %}
-</ul>
+    </tr>
+</table>
 
+<table class = "table">
+<thead>
+<tr>
+    <th>№</th>
+    <th>Name</th>
+    <th>Last Name</th>
+</tr>
+</thead>
+<tbody>
+{% for person in person_list %}
+<tr>
+    <td><a href = "/testapp/person/{{ person.id}}">{{ person.id}}</a></td>
+    <td><a href = "/testapp/person/{{ person.id}}">{{ person.name}}</a></td>
+    <td><a href = "/testapp/person/{{ person.id}}">{{ person.sirname}}</a></td>
+</tr>
+{% endfor %}
+</tbody>
+</table>
 
-<ul>
-	{% for person in person_list %}
-	<li><a href = "/person/{{ person.sirname}}/">{{ person.sirname}}</a></li>
-	{% endfor %}
-</ul>
-<ul>
-    {% for letter in letters %}
-    <li><a href = "/person/{{ person.sirname}}/">{{ letter}}</a></li>
-    {% endfor %}
-</ul>
-{{count}}
 	
+{% endblock %}
