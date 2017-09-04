@@ -13,7 +13,8 @@ def chunks(l, n):
         yield l[i:i+n]
 
 def index(request):
-    return HttpResponse("Test Application")
+	return render(request, 'index.html')
+    #return HttpResponse("Test Application")
 
 def employees(request):
 	form = DepartmentForm()
