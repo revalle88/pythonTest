@@ -86,3 +86,33 @@ def alphalist(request):
 		#person_list = Person.objects.extra(where=["sirname SIMILAR TO '[a-zA-Z]%%'"])
 		person_list = Person.objects.extra(where=["sirname SIMILAR TO %s"], params=[post_letters])
 	return render(request, 'alpha.html', {'person_list': person_list, 'letters': letters})
+
+class AlphaListView(generic.ListView):
+	template_name = 'alpha.html'
+	context_object_name = 'person_list'
+	
+	def get_queryset(self):
+		person_list = Person.objects.order_by('sirname')
+
+		if self.request.method == "POST":
+			post_letters = self.request.POST.get("letters", "")
+			post_letters = '['+post_letters.lower()+post_letters.upper()+']%%'
+			print("HelloPost")
+			print(post_letters)
+			#person_list = Person.objects.extra(where=["sirname SIMILAR TO '[a-zA-Z]%%'"])
+			person_list = Person.objects.extra(where=["sirname SIMILAR TO %s"], params=[post_letters])
+		return person_list
+	def get_context_data(self, **kwargs):
+		context = super(AlphaListView, self).get_context_data(**kwargs)
+		letters = list()
+		firstletter = 'a'
+		person_list = Person.objects.order_by('sirname')
+		p_count = person_list.count
+		chunk_list = list(chunks(person_list, 2))
+		for people in chunk_list:
+			sirname = people[len(people)-1].sirname
+			letters.append(firstletter+'-'+sirname[0])
+			firstletter = chr(ord(sirname[0])+1)
+		print(letters)
+		context['letters'] = letters
+		return context
