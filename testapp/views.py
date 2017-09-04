@@ -71,8 +71,8 @@ def alphalist(request):
 	letters = list()
 	firstletter = 'a'
 	person_list = Person.objects.order_by('sirname')
-	p_count = person_list.count
-	chunk_list = list(chunks(person_list, 2))
+	p_count = person_list.count()
+	chunk_list = list(chunks(person_list, p_count//7+1))
 	for people in chunk_list:
 		sirname = people[len(people)-1].sirname
 		letters.append(firstletter+'-'+sirname[0])
