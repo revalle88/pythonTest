@@ -46,6 +46,7 @@ class PersonListView(generic.ListView):
 			person_list = person_list.filter(
 				retireDate = retire_val,
 			)
+		return person_list
 		'''
 		form = DepartmentForm()
 		if form.is_valid():
@@ -53,10 +54,20 @@ class PersonListView(generic.ListView):
 		else:
 			person_list = Person.objects.all()
 #		return Person.objects.all()
-'''
-		return person_list
+
+		
 	def get_context_data(self, **kwargs):
 		context = super(PersonListView, self).get_context_data(**kwargs)
+		context['form'] = DepartmentForm()
+		return context
+'''
+
+	def get_context_data(self, **kwargs):
+		context = super(PersonListView, self).get_context_data(**kwargs)
+		queries_without_page = self.request.GET.copy()
+		if 'page' in queries_without_page:
+			del queries_without_page['page']
+		context['queries'] = queries_without_page
 		context['form'] = DepartmentForm()
 		return context
 

@@ -26,7 +26,7 @@ SECRET_KEY = '*axw7#9bu^igpyni$cpgyyo-!z2wl3qbc!w8#=98#%zvdm%1ry'
 DEBUG = True
 
 ALLOWED_HOSTS = []
-
+#ALLOWED_HOSTS = ['revalle88.pythonanywhere.com']
 
 # Application definition
 
